@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="25"
+   height="45"
+   viewBox="0 0 6.614583 11.90625"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="red-paren-right.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="4"
+     inkscape:cx="82.5"
+     inkscape:cy="36.375"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.6636251,-6.4064988)">
+    <path
+       style="font-size:9.87778px;line-height:1.25;font-family:'BIZ UDゴシック';-inkscape-font-specification:'BIZ UDゴシック';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;stroke-width:0.264583"
+       d="m 6.2273538,17.04771 q 0.6463001,-0.742763 1.0417972,-1.374593 1.003212,-1.596458 1.003212,-3.313494 0,-1.639866 -0.8971031,-3.1543301 Q 6.9556472,8.5011152 6.2273538,7.6618898 h 0.7234703 q 0.8826336,0.8006403 1.4469404,1.9437233 0.6945314,1.4131789 0.6945314,2.7491869 0,1.519287 -0.8778105,3.091629 -0.5257217,0.950158 -1.2636613,1.601281 z"
+       id="text1"
+       aria-label=")" />
+  </g>
+</svg>

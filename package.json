@@ -1,0 +1,13 @@
+{
+  "name": "PaperCalc",
+  "version": "1.1.4",
+  "description": "Written calculation in JavaScript",
+  "scripts": {
+    "build": "tsc && node scripts/copy-assets.js",
+    "watch": "tsc -w",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

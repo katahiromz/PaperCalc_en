@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="25"
+   height="45"
+   viewBox="0 0 6.614583 11.90625"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="red-8.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="4"
+     inkscape:cx="82.5"
+     inkscape:cy="36.375"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-4.6636251,-6.4064988)">
+    <path
+       style="font-size:9.87778px;line-height:1.25;font-family:'BIZ UDゴシック';-inkscape-font-specification:'BIZ UDゴシック';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ff0000;stroke-width:0.264583"
+       d="M 7.1871577,12.272807 Q 6.733783,11.997888 6.449218,11.510751 6.15983,11.018792 6.15983,10.319437 q 0,-0.8344023 0.4244358,-1.4180016 0.5112523,-0.7041777 1.3697703,-0.7041777 0.8440486,0 1.360124,0.6463001 0.4485515,0.5691299 0.4485515,1.4083552 0,0.868164 -0.395497,1.36977 -0.3279732,0.419613 -0.680062,0.573953 v 0.02894 q 1.2443687,0.617361 1.2443687,2.102887 0,0.819933 -0.3858507,1.38424 -0.5450143,0.810286 -1.5868114,0.810286 -1.0225045,0 -1.5482262,-0.737939 -0.4003202,-0.564307 -0.4003202,-1.418002 0,-1.437294 1.1768449,-2.049832 z m 0.7813478,-0.352089 q 0.4437284,-0.173633 0.6993545,-0.578776 0.284565,-0.453375 0.284565,-1.041798 0,-0.5594832 -0.2218642,-0.9598033 -0.2797418,-0.501606 -0.7765247,-0.501606 -0.4003202,0 -0.6655926,0.3617351 -0.2990344,0.4147895 -0.2990344,1.1093212 0,0.627007 0.2652724,1.017681 0.2218642,0.32315 0.535368,0.506429 0.1591635,0.09164 0.178456,0.08682 z m -0.053055,0.63183 q -1.0659128,0.49196 -1.0659128,1.779737 0,0.549837 0.2025717,0.930865 0.3038575,0.549837 0.9019262,0.549837 0.5787762,0 0.8922799,-0.549837 0.2363336,-0.409966 0.2363336,-0.96945 0,-0.520899 -0.2459799,-0.950157 -0.2652724,-0.458198 -0.6318306,-0.651124 -0.178456,-0.09646 -0.1881023,-0.101286 -0.067524,-0.04341 -0.09164,-0.04341 z"
+       id="text1"
+       aria-label="8" />
+  </g>
+</svg>

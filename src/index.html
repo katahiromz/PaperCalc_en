@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- HTML Header -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Long Division Calculator PaperCalc</title>
+  <!-- Meta description -->
+  <meta name="description" content="Automatically calculates written arithmetic step by step." />
+  <!-- Keywords for search engine visibility -->
+  <meta name="keywords" content="long division calculator,PaperCalc,elementary math tool,katahiromz,JavaScript" />
+  <!-- JavaScript -->
+  <script src="util.js"></script>
+  <script src="Paper.js"></script>
+  <script src="AlgoBase.js"></script>
+  <script src="AlgoAdd.js"></script>
+  <script src="AlgoSub.js"></script>
+  <script src="AlgoMul.js"></script>
+  <script src="AlgoDiv.js"></script>
+  <script src="AlgoTest.js"></script>
+  <script src="main.js"></script>
+  <!-- Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <!-- Open Graph Protocol -->
+  <meta property="og:title" content="Long Division Calculator PaperCalc" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://katahiromz.github.io/paper-calc/" />
+  <meta property="og:description" content="A step-by-step written arithmetic tool for elementary school math" />
+  <meta property="og:site_name" content="PaperCalc" />
+  <meta property="og:locale" content="en_US" />
+  <!-- Disable auto-translation -->
+  <meta name="google" content="notranslate" />
+  <!-- Favicon -->
+  <link rel="icon" href="./img/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="./img/apple-touch-icon.png" />
+  <!-- Web App Manifest -->
+  <link rel="manifest" href="manifest.json" />
+</head>
+<body>
+  <!-- Page Header -->
+  <header class="center">
+    <img src="./img/mainicon-16x16.png" alt="" /> Written Arithmetic Calculator "PaperCalc"
+  </header>
+  <!-- Container -->
+  <div id="my-container">
+    <!-- Control Panel -->
+    <div id="my-control-panel">
+      <!-- Operation type -->
+      <span class="no-wrap">
+        <select id="my-select" disabled>
+          <option value="add">Addition</option>
+          <option value="sub">Subtraction</option>
+          <option value="mul">Multiplication</option>
+          <option value="div">Division</option>
+          <!-- <option value="test">Test</option> -->
+        </select>
+      </span>
+      <!-- Input numbers -->
+      <span class="no-wrap">
+        <span id="label-a">Number A</span>: <input type="text" id="my-text-a" value="12345" size="4" maxlength="20" inputmode="decimal" disabled />
+      </span>
+      <span class="no-wrap">
+        <span id="label-b">Number B</span>: <input type="text" id="my-text-b" value="6789" size="4" maxlength="20" inputmode="decimal" disabled />
+      </span>
+      <!-- Decimal precision -->
+      <span id="my-accuracy" class="no-wrap hidden">
+        <span id="label-c">Decimal places</span>: <input type="number" id="my-text-c" value="0" min="0" max="9" pattern="\d" inputmode="numeric" step="1" disabled /> digits
+      </span>
+      <!-- Speed -->
+      <span class="no-wrap">
+        Speed: <input type="range" id="my-speed-range" min="1" max="7" step="1" value="4" style="vertical-align: middle;" disabled />
+        <span id="speed-label">5</span>
+      </span>
+      <!-- Input error message -->
+      <div id="input-error-message"></div>
+      <div class="button-group">
+        <!-- Buttons -->
+        <button id="my-start-button" disabled>Play ▶</button>
+        <button id="my-stop-button" disabled>Stop ■</button>
+        <button id="my-next-step-button" disabled>Step ＞</button>
+        <button id="my-reset-button" disabled>Reset</button>
+      </div>
+    </div>
+    <div id="my-canvas-space">
+      <!-- Main canvas -->
+      <canvas id="my-canvas" width="1" height="1"></canvas>
+    </div>
+    <div>
+      <!-- Text area (displays explanations and descriptions) -->
+      <div id="my-textarea"></div>
+    </div>
+  </div>
+  <!-- Page Footer -->
+  <footer class="center">
+    Ver.<span id="my-version-span">?.?.?</span> &copy; 2026&nbsp;katahiromz,&nbsp;supervised by Yamaguchi@Webguchi
+  </footer>
+</body>
+</html>

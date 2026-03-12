@@ -1,0 +1,488 @@
+/* =====================================================
+   PaperCalc - main.css
+   Layout strategy:
+   - Mobile portrait (portrait & ≤600px): 3 vertical rows
+     Control panel → Chalkboard → Step log
+   - All other cases (landscape / tablet / desktop):
+     Top row: Control panel (full width, horizontal)
+     Bottom row: Chalkboard (left) | Step log (right) — 2 columns
+   ===================================================== */
+
+/* --- CSS variables --- */
+:root {
+  --color-bg:           #e0f7fa;
+  --color-bg-dot:       #b2ebf2;
+  --color-primary:      #00796b;
+  --color-primary-dark: #004d40;
+  --color-accent:       #0288d1;
+  --color-panel-bg:     #ffffff;
+  --color-panel-border: #4fc3f7;
+  --color-panel-shadow: #b3e5fc;
+  --color-input-bg:     #f0f4f8;
+  --color-input-border: #90caf9;
+  --color-btn-start-bg: #81c784;
+  --color-btn-start-sh: #388e3c;
+  --color-btn-stop-bg:  #ef5350;
+  --color-btn-stop-sh:  #c62828;
+  --color-btn-bg:       #ffb74d;
+  --color-btn-shadow:   #e65100;
+  --color-btn-dis-bg:   #e0e0e0;
+  --color-btn-dis-fg:   #a0a0a0;
+  --color-log-active-bg:#e3f2fd;
+  --color-log-active-fg:#0d47a1;
+  --color-log-active-bd:#1976d2;
+  --color-text:         #333;
+  --color-footer:       #666;
+  --color-error:        #f44336;
+
+  --gap-sm:    6px;
+  --gap-md:    10px;
+  --gap-lg:    16px;
+
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 50px;
+
+  --font-ui: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-ui-2: "Courier New", Courier, monospace;
+  --font-log: "Georgia", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+
+  --touch-min: 44px;
+}
+
+/* =====================================================
+   Reset
+   ===================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* =====================================================
+   Body: fills the screen using a vertical flex layout
+   ===================================================== */
+body {
+  margin: 0;
+  padding: 6px 8px;
+  font-size: 1.05rem;
+  font-family: var(--font-ui);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: radial-gradient(var(--color-bg-dot) 10%, transparent 10%);
+  background-size: 20px 20px;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* =====================================================
+   Header
+   ===================================================== */
+header {
+  flex: 0 0 auto;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--color-primary);
+  text-shadow: 1px 1px 0 #fff;
+  text-align: center;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  border-bottom: 4px dotted var(--color-primary);
+}
+
+/* =====================================================
+   Footer
+   ===================================================== */
+footer {
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  text-align: center;
+  color: var(--color-footer);
+  margin-top: 4px;
+}
+
+/* =====================================================
+   Main container
+   [Default = landscape / tablet / desktop]
+   Top row: Control panel (full width)
+   Bottom row: Chalkboard (left) | Step log (right)
+   ===================================================== */
+#my-container {
+  flex: 1 1 0;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto 1fr;
+  gap: var(--gap-md);
+}
+
+/* --- Control panel: full-width top row, horizontal layout --- */
+#my-control-panel {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+  background-color: var(--color-panel-bg);
+  border: 3px solid var(--color-panel-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 3px 0 var(--color-panel-shadow);
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* --- Chalkboard: bottom-left --- */
+#my-canvas-space {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  background-color: var(--color-primary-dark);
+  border-radius: var(--radius-md);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  padding: 4% 3% 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  min-height: 0;
+}
+
+/* --- Step log wrapper: bottom-right --- */
+#my-container > div:last-child {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  position: relative;
+  min-height: 0;
+}
+
+/* =====================================================
+   Canvas element
+   ===================================================== */
+#my-canvas {
+  max-width: 100%;
+  max-height: 100%;
+  filter: invert(100%);
+  mix-blend-mode: screen;
+  opacity: 0.95;
+  touch-action: none;
+  -ms-touch-action: none;
+}
+
+/* =====================================================
+   Step log panel
+   ===================================================== */
+#my-textarea {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-panel-bg);
+  border: 1px solid #ccc;
+  border-top: 6px solid var(--color-panel-border);
+  overflow-y: auto;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  font-family: var(--font-log);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column-reverse;
+  line-height: 1.5;
+  scroll-behavior: smooth;
+}
+
+.log-item {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 6px 0;
+  color: #444;
+  transition: all 0.3s ease;
+}
+
+.log-item.active {
+  background-color: var(--color-log-active-bg);
+  color: var(--color-log-active-fg);
+  font-weight: bold;
+  border-left: 6px solid var(--color-log-active-bd);
+  padding-left: 10px;
+  border-radius: 2px;
+  transform: scale(1.01);
+}
+
+/* =====================================================
+   Form controls
+   ===================================================== */
+select,
+input[type="text"],
+input[type="number"] {
+  color: var(--color-text);
+  background-color: var(--color-input-bg);
+  border-radius: 10px;
+  padding: 6px 10px;
+  border: 2px solid var(--color-input-border);
+  font-size: 0.95rem;
+  font-family: var(--font-ui-2);
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+  min-height: var(--touch-min);
+}
+
+input[type="text"],
+input[type="number"] { text-align: right; }
+
+input[type="range"] {
+  vertical-align: middle;
+  margin: 0 4px;
+}
+
+select:focus, input:focus {
+  border-color: var(--color-accent);
+  background-color: #fff;
+  color: #000;
+}
+
+select:focus-visible, input:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+select:disabled,
+input[type="text"]:disabled,
+input[type="number"]:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* =====================================================
+   Buttons — shared styles
+   ===================================================== */
+button {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 0.95rem;
+  font-family: var(--font-ui);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  border: none;
+  background-color: var(--color-btn-bg);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--color-btn-shadow);
+  transition: background-color 0.1s, transform 0.1s, box-shadow 0.1s;
+  min-height: var(--touch-min);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  white-space: nowrap;
+}
+
+button:hover:not(:disabled) {
+  background-color: #ff9800;
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 var(--color-btn-shadow);
+}
+
+button:active:not(:disabled) {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  background-color: var(--color-btn-dis-bg) !important;
+  color: var(--color-btn-dis-fg) !important;
+  box-shadow: none !important;
+  transform: translateY(4px) !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}
+
+#my-start-button {
+  background-color: var(--color-btn-start-bg);
+  box-shadow: 0 4px 0 var(--color-btn-start-sh);
+}
+#my-start-button:hover:not(:disabled) { background-color: #66bb6a; }
+
+#my-stop-button {
+  background-color: var(--color-btn-stop-bg);
+  box-shadow: 0 4px 0 var(--color-btn-stop-sh);
+}
+#my-stop-button:hover:not(:disabled) { background-color: #e53935; }
+
+/* =====================================================
+   Button group
+   ===================================================== */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* =====================================================
+   Utilities
+   ===================================================== */
+.no-wrap { white-space: nowrap; }
+.hidden  { display: none !important; }
+.center  { text-align: center; }
+
+#speed-label {
+  display: inline-block;
+  width: 5rem;
+  text-align: left;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+/* =====================================================
+   Error display
+   ===================================================== */
+.input-error {
+  background-color: #ffcdd2 !important;
+  border: 2px solid var(--color-error) !important;
+}
+
+#input-error-message {
+  color: var(--color-error);
+  font-size: 0.88em;
+  font-weight: bold;
+  min-height: 1.2em;
+}
+
+/* =====================================================
+   Mobile portrait (portrait & max-width 600px)
+   3 vertical rows: Control panel → Chalkboard → Step log
+   ===================================================== */
+@media (max-width: 600px) and (orientation: portrait) {
+  body {
+    padding: 4px 5px;
+    font-size: 0.97rem;
+  }
+
+  /* Container: switch to vertical flex column */
+  #my-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0;
+    gap: 5px;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Control panel: shrinks to fit its content height */
+  #my-control-panel {
+    flex: 0 0 auto;
+    grid-column: unset;
+    grid-row: unset;
+    padding: 6px 8px;
+    gap: 5px;
+  }
+
+  /* Chalkboard: takes up the larger share of remaining height */
+  #my-canvas-space {
+    flex: 3 1 0;
+    grid-column: unset;
+    grid-row: unset;
+    width: 100%;
+    aspect-ratio: unset;
+    min-height: 0;
+    padding: 3% 3% 5%;
+  }
+
+  /* Step log wrapper: takes up the smaller share of remaining height */
+  #my-container > div:last-child {
+    flex: 2 1 0;
+    grid-column: unset;
+    grid-row: unset;
+    min-height: 0;
+    position: relative;
+  }
+
+  select,
+  input[type="text"],
+  input[type="number"] {
+    font-size: 0.92rem;
+  }
+}
+
+/* =====================================================
+   Extra-small phones (≤360px, portrait)
+   ===================================================== */
+@media (max-width: 360px) and (orientation: portrait) {
+  body {
+    font-size: 0.88rem;
+    padding: 3px 4px;
+  }
+
+  header { font-size: 0.9rem; }
+
+  #my-control-panel {
+    padding: 5px 6px;
+    gap: 4px;
+  }
+
+  select,
+  input[type="text"],
+  input[type="number"] {
+    font-size: 0.82rem;
+  }
+
+  button {
+    font-size: 0.82rem;
+    padding: 6px 10px;
+  }
+
+  #my-canvas-space {
+    padding: 2% 2% 4%;
+  }
+}
+
+/* =====================================================
+   Dark mode
+   ===================================================== */
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:           #102027;
+    --color-bg-dot:       #1c3a47;
+    --color-primary:      #4db6ac;
+    --color-panel-bg:     #1e2d38;
+    --color-panel-border: #0288d1;
+    --color-panel-shadow: #01579b;
+    --color-input-bg:     #263545;
+    --color-input-border: #0277bd;
+    --color-text:         #eceff1;
+    --color-footer:       #90a4ae;
+    --color-log-active-bg:#0d2137;
+  }
+
+  #my-textarea {
+    background-color: var(--color-panel-bg);
+    border-color: #455a64;
+    border-top-color: var(--color-panel-border);
+    color: var(--color-text);
+  }
+
+  .log-item {
+    color: #b0bec5;
+    border-bottom-color: #37474f;
+  }
+
+  select:disabled,
+  input[type="text"]:disabled,
+  input[type="number"]:disabled {
+    background-color: #37474f;
+    color: #607d8b;
+  }
+}*/
+
+/* =====================================================
+   Reduced motion
+   ===================================================== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
