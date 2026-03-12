@@ -46,7 +46,7 @@
 
   --font-ui: "Nunito", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --font-ui-2: Tahoma, Arial, monospace;
-  --font-log: "Georgia", "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  --font-log: Helvetica, Calibri, "Palatino Linotype", "Book Antiqua", Palatino, serif;
 
   --touch-min: 44px;
 }

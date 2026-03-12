@@ -2,7 +2,7 @@
 // Author: katahiromz
 // License: MIT
 "use strict";
-const VERSION = '1.1.4'; // Version
+const VERSION = '1.1.5'; // Version
 const DEBUGGING = false; // Debug mode flag
 document.addEventListener('DOMContentLoaded', function () {
     Paper.g_minimal = true; // Minimize paper expansion
