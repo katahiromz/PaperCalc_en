@@ -11,7 +11,7 @@ class AlgoAdd extends AlgoBase {
     // Perform the calculation
     doCalc(a, b, origin_iy = 0) {
         this.clearMapping();
-        this.addCommand(['output', `Now calculating ${a} ＋ ${b}.`]);
+        this.addCommand(['output', `Now calculating ${a} + ${b}.`]);
         this.addCommand(['output', `First, write ${a} at the top.`]);
         // Place the augend (A)
         this.autoPutDigits(a, origin_iy);
@@ -26,7 +26,7 @@ class AlgoAdd extends AlgoBase {
         this.autoPutDigits(b, origin_iy + 1);
         this.addCommand(['step']);
         // Draw the '+' sign
-        this.addCommand(['output', `Write a plus sign (＋) to the left of the second number.`]);
+        this.addCommand(['output', `Write a plus sign (+) to the left of the second number.`]);
         {
             let ix0 = Math.min(this.min_x(origin_iy), this.min_x(origin_iy + 1)) - 1;
             this.addCommand(['drawDigit', ix0, origin_iy + 1, '+']);
