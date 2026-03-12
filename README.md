@@ -6,7 +6,7 @@ PaperCalc is a JavaScript program that automatically demonstrates step-by-step w
 
 It is a web-based learning tool aimed at elementary school students (grade 3 and above).
 
-- Demo: https://katahiromz.github.io/paper-calc/
+- Demo: https://katahiromz.github.io/PaperCalc/
 
 <p align="center">
   <img src="screenshot.png" alt="[Screenshot]" />
