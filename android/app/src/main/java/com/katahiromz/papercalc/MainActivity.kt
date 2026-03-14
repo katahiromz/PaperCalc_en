@@ -11,7 +11,6 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.StrictMode
-import android.speech.tts.TextToSpeech
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
@@ -27,6 +26,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
@@ -177,6 +177,7 @@ class MainActivity : AppCompatActivity(), ValueCallback<String> {
     private var webViewReady = false
 
     // アクティビティの作成時。
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         Timber.i("onCreate")
 
@@ -209,7 +210,6 @@ class MainActivity : AppCompatActivity(), ValueCallback<String> {
         // システムバーが変更された場合を検出する。
         ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, insets ->
             Timber.i("ViewCompat.setOnApplyWindowInsetsListener")
-            val sysBarsVisible = insets.isVisible(WindowInsetsCompat.Type.systemBars())
             WindowInsetsCompat.toWindowInsetsCompat(view.onApplyWindowInsets(insets.toWindowInsets()))
         }
 
@@ -221,13 +221,8 @@ class MainActivity : AppCompatActivity(), ValueCallback<String> {
     private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             Timber.i("handleOnBackPressed")
-            if (true) {
-                // 'go_back' メッセージを投函する。おそらく'message'イベントリスナが受け取るはず。
-                webView?.evaluateJavascript("postMessage('go_back');") { }
-            } else {
-              // 軽く閉じる（完全には閉じたいなら代わりにfinishAndRemoveTaskを使う）
-              finish();
-            }
+            // 軽く閉じる（完全には閉じたいなら代わりにfinishAndRemoveTaskを使う）
+            finish()
         }
     }
 
@@ -236,8 +231,6 @@ class MainActivity : AppCompatActivity(), ValueCallback<String> {
         Timber.i("onStart")
         super.onStart() // 親にも伝える。
     }
-
-    private var speechVoiceVolume: Float = 1.0f
 
     // アクティビティの復帰時。
     override fun onResume() {
@@ -298,7 +291,7 @@ class MainActivity : AppCompatActivity(), ValueCallback<String> {
                 } else {
                   "window.dispatchEvent(new CustomEvent('PhysicalVolumeButton', { detail: { volumeType: 'down' } }));"
                 }
-                webView?.evaluateJavascript(script, null);
+                webView?.evaluateJavascript(script, null)
 
                 return true // 音量変更の動作をキャンセルする場合
             }
@@ -417,7 +410,7 @@ class MainActivity : AppCompatActivity(), ValueCallback<String> {
         // WebView初期化完了後、URLをロードする
         webViewReady = true
         val url = getLocString(R.string.url)
-        Timber.i("url: " + url)
+        Timber.i("url: %s", url)
         currentWebView.loadUrl(url)
     }
 
