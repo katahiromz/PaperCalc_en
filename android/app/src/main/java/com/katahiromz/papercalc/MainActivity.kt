@@ -64,7 +64,7 @@ const val USE_HARDWARE_ACCELERATION = false
 
 // endregion
 
-class MainActivity : AppCompatActivity(), ValueCallback<String>, TextToSpeech.OnInitListener {
+class MainActivity : AppCompatActivity(), ValueCallback<String> {
     /////////////////////////////////////////////////////////////////////
     // region 共通
 
@@ -203,6 +203,9 @@ class MainActivity : AppCompatActivity(), ValueCallback<String>, TextToSpeech.On
         // ロケールをセットする。
         setCurLocale(Locale.getDefault())
 
+        // WebViewを初期化
+        initWebView(savedInstanceState)
+
         // システムバーが変更された場合を検出する。
         ViewCompat.setOnApplyWindowInsetsListener(window.decorView) { view, insets ->
             Timber.i("ViewCompat.setOnApplyWindowInsetsListener")
@@ -266,9 +269,6 @@ class MainActivity : AppCompatActivity(), ValueCallback<String>, TextToSpeech.On
     override fun onStop() {
         Timber.i("onStop")
         super.onStop() // 親にも伝える。
-
-        // スピーチを停止する。
-        stopSpeech()
     }
 
     // アクティビティの破棄時。
@@ -386,12 +386,6 @@ class MainActivity : AppCompatActivity(), ValueCallback<String>, TextToSpeech.On
     private fun initChromeClient(currentWebView: WebView) {
         // まず、クロームクライアントを作成する。
         chromeClient = CustomWebChromeClient(this, object : CustomWebChromeClient.Listener {
-            override fun onSpeech(text: String, volume: Float): Boolean {
-                Timber.i("onSpeech")
-                theSpeechText = text // スピーチテキストをセットする。
-                return speechText(text, volume) // スピーチを開始する。
-            }
-
             override fun onShowToast(text: String, typeOfToast: Int) {
                 showToast(text, typeOfToast) // Toastを表示する。
             }
@@ -485,21 +479,6 @@ class MainActivity : AppCompatActivity(), ValueCallback<String>, TextToSpeech.On
     fun setCurLocale(locale: Locale) {
         currLocale = locale
         currLocaleContext = null
-
-        // TextToSpeechにもロケールをセットする。
-        if (isSpeechReady && tts != null) {
-            tts?.let { textToSpeech ->
-                if (textToSpeech.isLanguageAvailable(locale) >= TextToSpeech.LANG_AVAILABLE) {
-                    textToSpeech.language = locale
-                } else {
-                    Timber.w("Locale $locale not available for TTS.")
-                }
-            }
-        } else {
-            // TTSが準備できていない場合は、onInitで再度ロケール設定を試みるか、
-            // 準備完了後に明示的に設定するロジックが必要になることがあります。
-            // 現状では、準備完了時にデフォルトロケールが設定されます。
-        }
     }
 
     // ローカライズされた文字列を取得する。複数ロケール対応のため、特殊な実装が必要。
@@ -511,58 +490,6 @@ class MainActivity : AppCompatActivity(), ValueCallback<String>, TextToSpeech.On
     }
     fun getLocString(id: Int): String {
         return getLocString(id, currLocale)
-    }
-
-    // endregion
-
-    /////////////////////////////////////////////////////////////////////
-    // region TextToSpeech関連
-
-    private var tts: TextToSpeech? = null // TextToSpeechオブジェクト。
-    private var isSpeechReady = false // スピーチの準備が完了したか？
-    private var theSpeechText = "" // スピーチテキスト。
-
-    // TextToSpeechを初期化する。
-    private fun initTextToSpeech() {
-        // 既存のttsインスタンスがあればシャットダウンする。
-        tts?.stop()
-        tts?.shutdown()
-        // 初期化。
-        tts = TextToSpeech(this, this)
-    }
-
-    // TextToSpeechのために用意された初期化完了ルーチン。
-    // TextToSpeech.OnInitListener
-    override fun onInit(status: Int) {
-        if (status == TextToSpeech.SUCCESS) {
-            isSpeechReady = true
-        }
-    }
-
-    // スピーチを開始する。
-    fun speechText(text: String, volume: Float): Boolean {
-        if (isSpeechReady && tts != null) {
-            val params = Bundle()
-            val speed = 0.3f // 0..1
-            val pitch = 0.8f // 0..1
-            if (volume >= 0)
-                speechVoiceVolume = volume
-            params.putFloat(TextToSpeech.Engine.KEY_PARAM_VOLUME, speechVoiceVolume)
-            tts?.setPitch(pitch)
-            tts?.setSpeechRate(speed)
-            tts?.speak(text, TextToSpeech.QUEUE_FLUSH, params, "utteranceId_speech")
-            return true
-        } else {
-            Timber.w("tts is not ready")
-            return false
-        }
-    }
-
-    // スピーチを停止する。
-    private fun stopSpeech() {
-        if (isSpeechReady) {
-            tts?.stop()
-        }
     }
 
     // endregion

@@ -10,7 +10,7 @@
     <string name="app_name">PaperCalc</string>
     <string name="web_view">WebView</string>
     <string name="progress_bar">ProgressBar</string>
-    <string name="now_starting">Loading...</string>
+    <string name="now_starting">Loading PaperCalc...</string>
 
     <!-- URLs -->
     <string name="url">https://appassets.androidplatform.net/index.html</string>

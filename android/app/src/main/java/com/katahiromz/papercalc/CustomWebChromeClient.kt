@@ -5,24 +5,18 @@
 
 package com.katahiromz.papercalc
 
-import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.text.InputType
-import android.view.View
-import android.view.WindowManager
 import android.webkit.ConsoleMessage
 import android.webkit.JavascriptInterface
 import android.webkit.JsPromptResult
 import android.webkit.JsResult
 import android.webkit.PermissionRequest
-import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import timber.log.Timber
 import java.util.Locale
@@ -33,7 +27,6 @@ class CustomWebChromeClient(
 ) : WebChromeClient() {
     // リスナ。
     interface Listener {
-        fun onSpeech(text: String, volume: Float): Boolean
         fun onShowToast(text: String, typeOfToast: Int)
         fun onShowSnackbar(text: String, typeOfSnack: Int)
         fun onProgressChanged(view: WebView?, newProgress: Int)
